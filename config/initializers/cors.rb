@@ -5,12 +5,12 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
-# Rails.application.config.middleware.insert_before 0, Rack::Cors do
-#   allow do
-#     origins 'example.com'
-#
-#     resource '*',
-#       headers: :any,
-#       methods: [:get, :post, :put, :patch, :delete, :options, :head]
-#   end
-# end
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins '*' #any origin that makes requst to my api, i will allow any origina and give back any of the metjhosd below from my controller
+
+    resource '*',
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+end
