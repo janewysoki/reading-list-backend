@@ -2,7 +2,7 @@ class Api::V1::BooksController < ApplicationController
     before_action :set_list
 
     def index #only want books associated with specifc RL
-        @books = @reading_list.books
+        @books = Book.all
         render json: @books
     end
 
@@ -22,7 +22,6 @@ class Api::V1::BooksController < ApplicationController
     end
 
     def destroy
-        #set_list
         #@book.destroy
     end
 
