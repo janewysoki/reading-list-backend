@@ -7,7 +7,7 @@ class Api::V1::BooksController < ApplicationController
     end
 
     def create 
-       @book = @reading_list.books.build(book_params)
+       @book = @reading_list.books.new(book_params) #could use build instead of new
        if @book.save
         render json: @book
        else
