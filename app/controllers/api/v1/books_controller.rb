@@ -9,7 +9,7 @@ class Api::V1::BooksController < ApplicationController
     def create 
        @book = @reading_list.books.new(book_params) #could use build instead of new
        if @book.save
-        render json: @reading_list
+        render json: @reading_list #returning updated reading list instead of book which makes the iteration in case ADD BOOK a little bit simpler so we could just replace that RL instead of going into that RL's books and replacing those 
        else
         render json: {error: 'Error creating book.'}
        end
@@ -22,7 +22,11 @@ class Api::V1::BooksController < ApplicationController
     end
 
     def destroy
-        #@book.destroy
+        @book = Book.find(params["id"])
+        #find the RL associated with this book because isntead of sending back book we send back RL
+        @reading_list = ReadingList.find(book.reading_list_id)
+        @book.destroy
+        render json: @reading_list
     end
 
     private
