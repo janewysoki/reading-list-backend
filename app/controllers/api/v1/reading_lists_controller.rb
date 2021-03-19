@@ -24,6 +24,13 @@ class Api::V1::ReadingListsController < ApplicationController
         @reading_list.destroy
     end
 
+    def update
+        @reading_list = ReadingList.find(params[:id])
+        @reading_list.update(name: params["reading_list"]["name"])
+        @reading_list.save
+        render json: @reading_list
+    end
+
     private
 
     def reading_list_params
