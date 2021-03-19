@@ -10,7 +10,7 @@ class Api::V1::ReadingListsController < ApplicationController
         if @reading_list.save
             render json: @reading_list
         else
-            render json: {error: 'Error creating reading list.'}
+            render json: {error: 'Error creating reading list. You must enter a name.'}
         end
     end
 
